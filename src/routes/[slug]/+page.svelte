@@ -130,6 +130,12 @@
         <p class="narrator-body">{@html md(section.narrator)}</p>
       </aside>
     {/if}
+
+    <aside class="qr-share">
+      <div class="qr-label">Scan to open this page</div>
+      <div class="qr-svg">{@html data.qrSvg}</div>
+      <div class="qr-url">{data.pageUrl}</div>
+    </aside>
   </div>
 
   <footer class="bottom">
@@ -442,6 +448,47 @@
     font-style: normal;
   }
 
+  .qr-share {
+    grid-column: 2;
+    margin-top: 2.4rem;
+    padding-top: 1.4rem;
+    border-top: 1px dotted var(--rule);
+    max-width: 52ch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+
+  .qr-label {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+  }
+
+  .qr-svg {
+    width: 112px;
+    height: 112px;
+    padding: 4px;
+  }
+
+  .qr-svg :global(svg) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .qr-url {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+    word-break: break-all;
+  }
+
   .bottom { font-family: var(--sans); }
 
   .nav {
@@ -536,7 +583,8 @@
     .body-text,
     .source,
     .eli5,
-    .narrator {
+    .narrator,
+    .qr-share {
       grid-column: 1;
     }
     .gesture { padding-left: 1rem; }
@@ -545,5 +593,6 @@
     .source { padding-left: 1rem; }
     .eli5 { max-width: none; }
     .narrator { max-width: none; }
+    .qr-share { max-width: none; }
   }
 </style>

@@ -2,6 +2,8 @@
   import { base } from '$app/paths';
   import { themes, flat } from '$lib/outline.js';
 
+  let { data } = $props();
+
   let firstYear = flat[0].year;
   let lastYear = flat[flat.length - 1].year;
 </script>
@@ -34,6 +36,12 @@
       </article>
     {/each}
   </section>
+
+  <aside class="qr-share">
+    <div class="qr-label">Scan to open this page</div>
+    <div class="qr-svg">{@html data.qrSvg}</div>
+    <div class="qr-url">{data.pageUrl}</div>
+  </aside>
 </main>
 
 <style>
@@ -141,5 +149,43 @@
     font-style: italic;
     font-weight: 300;
     font-size: 1.05rem;
+  }
+
+  .qr-share {
+    margin-top: 2rem;
+    padding-top: 1.4rem;
+    border-top: 1px dotted var(--rule);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+
+  .qr-label {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+  }
+
+  .qr-svg {
+    width: 112px;
+    height: 112px;
+    padding: 4px;
+  }
+
+  .qr-svg :global(svg) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .qr-url {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    word-break: break-all;
   }
 </style>

@@ -4,6 +4,8 @@
   import { flat } from '$lib/outline.js';
   import { createPager } from '$lib/gestures.js';
 
+  let { data } = $props();
+
   let dragOffset = $state(0);
   let dragging = $derived(dragOffset !== 0);
 
@@ -51,6 +53,13 @@
 
   <div class="meta bottom">
     <button onclick={start}>Begin&nbsp;→</button>
+    <div class="qr-inline">
+      <div class="qr-svg">{@html data.qrSvg}</div>
+      <div class="qr-meta">
+        <div class="qr-label">Scan to open</div>
+        <div class="qr-url">{data.pageUrl}</div>
+      </div>
+    </div>
     <span class="hint">Enter, arrow, swipe, or scroll</span>
   </div>
 </main>
@@ -142,5 +151,49 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
+  }
+
+  .qr-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .qr-svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .qr-svg :global(svg) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .qr-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .qr-label {
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--muted);
+  }
+
+  .qr-url {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 720px) {
+    .qr-inline {
+      display: none;
+    }
   }
 </style>
