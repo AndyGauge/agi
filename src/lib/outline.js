@@ -1620,6 +1620,69 @@ const rawParts = [
   },
 
   // ─────────────────────────────────────────────────────────────
+  // Orchestration
+  // ─────────────────────────────────────────────────────────────
+  {
+    theme: 'Orchestration',
+    sections: [
+      {
+        title: 'Intelligent Agents: Theory and Practice',
+        year: 1995,
+        gesture: 'Michael Wooldridge and Nick Jennings — the founding multi-agent systems survey. Written twenty years before LLMs, every concept in modern agent frameworks traces here.',
+        body: 'Wooldridge and Jennings’s *Knowledge Engineering Review* survey defined the vocabulary that multi-agent systems still use: *autonomy*, *reactivity*, *pro-activeness*, *social ability*, and the distinction between the *weak* notion of agency (just those four) and the *strong* notion (mental states — beliefs, desires, intentions). The paper reviewed the BDI architecture, multi-agent coordination, agent communication languages (KQML, FIPA ACL), and the key open problems. Every modern LLM-agent framework — AutoGen, CrewAI, LangGraph, OpenAI Agents — is an instantiation of concepts formalized here. The modern move is that the agents are LLM-backed; the architectural questions (how they communicate, how they coordinate, how they handle partial failure) are the same ones Wooldridge and Jennings catalogued thirty years ago.',
+        citation: 'Wooldridge, M. & Jennings, N. R. (1995). *The Knowledge Engineering Review*, 10(2), 115–152.',
+        link: 'https://doi.org/10.1017/S0269888900008122',
+        eli5: 'Two British computer scientists wrote the founding survey of multi-agent systems in 1995 — twenty years before ChatGPT. They defined the vocabulary we still use: autonomy, reactivity, pro-activeness, social ability. They catalogued how agents communicate and coordinate. Every modern AI-agent framework — AutoGen, CrewAI, LangGraph — is an instance of ideas they formalized thirty years ago. The only thing that’s new is that the agents run on language models now.'
+      },
+      {
+        title: 'ReAct: Synergizing Reasoning and Acting',
+        year: 2022,
+        gesture: 'Shunyu Yao et al. — reasoning and acting interleaved, not alternated. The loop every modern agent framework runs.',
+        body: 'The ReAct paper (Yao, Zhao, Yu, Du, Shafran, Narasimhan, Cao) demonstrated that a language model performing a task benefits from alternating between *reasoning* traces (Chain-of-Thought-style "thinking") and *action* calls (tool use, retrieval, computation). Before ReAct, CoT-only prompting hallucinated; action-only prompting ignored obvious deductions. The interleaved pattern — think, act, observe, think, act — dramatically improved performance on HotpotQA, FEVER, and ALFWorld. Every modern agent loop (AutoGen, LangGraph, OpenAI Agents SDK, Claude Agent SDK) is a ReAct descendant. The shape is: emit a thought, emit a tool call, read the result, emit the next thought. Repeat until done.',
+        citation: 'Yao, S. et al. (2022). arXiv:2210.03629.',
+        link: 'https://arxiv.org/abs/2210.03629',
+        eli5: 'Princeton researchers demonstrated that language models perform tasks better when they alternate between *thinking out loud* (Chain-of-Thought style reasoning) and *taking actions* (calling tools, searching, computing) than when they do just one or the other. Think, act, observe, think, act — repeat. Every modern AI agent framework runs some variant of this loop.'
+      },
+      {
+        title: 'HuggingGPT',
+        year: 2023,
+        gesture: 'Yongliang Shen et al. — an LLM as router across specialized models. One language model decides which of hundreds of Hugging Face models to call for each sub-task, then assembles the results. The first end-to-end demonstration of an LLM orchestrating a mesh.',
+        body: 'The HuggingGPT paper (Shen, Song, Tan, Li, Lu, Zhuang) showed that a language model could serve as a controller: it parses a user task (e.g., "describe this image in an audio clip"), plans a pipeline of specialized models to execute (image-to-text, then text-to-speech), selects the specific models from Hugging Face, invokes them, and synthesizes the final result. The paper — released as *Jarvis* on GitHub — was the first broadly-visible demonstration that an LLM could orchestrate across a heterogeneous mesh of purpose-built models rather than trying to do every task itself. Every subsequent multi-model routing layer (model gateways, MoE over providers, cost-aware routers) descends from this template.',
+        citation: 'Shen, Y. et al. (2023). *NeurIPS 2023*. arXiv:2303.17580.',
+        link: 'https://arxiv.org/abs/2303.17580',
+        eli5: 'Microsoft Research Asia built a system where one language model plans out a task and then routes sub-tasks to specialized models for each step. Describe this image in an audio clip? The LLM decides: first an image-captioning model, then a text-to-speech model. The paper — released as the "Jarvis" GitHub project — was the first widely-visible demonstration of a language model orchestrating a whole mesh of specialized models instead of trying to do everything itself.'
+      },
+      {
+        title: 'AutoGen',
+        year: 2023,
+        gesture: 'Qingyun Wu et al., Microsoft — conversable multi-agent framework. Agents with defined roles talk to each other in structured conversations. The production-ready multi-agent pattern.',
+        body: 'The AutoGen paper (Wu, Bansal, Zhang, Wu, Li, Zhu, Wang, Li, Jiang, Zhang, Wang) introduced a framework in which LLM-backed agents with defined roles communicate through structured messages. A typical configuration: a *user-proxy agent* that initiates tasks, a *coding agent* that writes code, a *critic agent* that reviews it, and a conversation manager that routes messages between them. Complex tasks that single agents stalled on — multi-step software development, data analysis with verification, research synthesis — became tractable through role specialization. AutoGen became one of the first widely-deployed multi-agent frameworks in production; it has informed the design of subsequent frameworks (CrewAI, LangGraph, OpenAI Agents SDK) on role-based decomposition.',
+        citation: 'Wu, Q. et al. (2023). arXiv:2308.08155.',
+        link: 'https://arxiv.org/abs/2308.08155',
+        eli5: 'Microsoft Research released a framework called AutoGen that lets you set up multiple AI agents with different roles — coder, reviewer, planner — and let them talk to each other to solve complex tasks. One agent writes code, another reviews it, a third decides if the output is acceptable. Complex jobs that stumped a single agent became tractable through role specialization. Every subsequent multi-agent framework in production — CrewAI, LangGraph, the OpenAI Agents SDK — builds on the role-based decomposition pattern AutoGen established.'
+      },
+      {
+        title: 'Generative Agents',
+        year: 2023,
+        gesture: 'Joon Sung Park et al., Stanford — 25 language-model-backed agents in a simulated town. Memory, reflection, planning. Emergent social behavior at small N.',
+        body: 'The Stanford *Smallville* paper (Park, O’Brien, Cai, Morris, Liang, Bernstein) ran 25 LLM-backed agents in a simulated town for two days. Each agent had a backstory, a daily plan, a memory stream, and a reflection mechanism that synthesized observations into higher-level thoughts. The agents spontaneously organized a Valentine’s Day party, formed relationships, gossiped about each other, and remembered prior encounters days later. The paper demonstrated that agent architectures with memory and reflection produce *emergent* social behavior at quite small N. The work has since influenced agent-society research, multi-agent simulations for policy and economics, NPC design in games, and the broader agenda of studying LLMs-as-societies.',
+        citation: 'Park, J. S. et al. (2023). *UIST 2023*. arXiv:2304.03442.',
+        link: 'https://arxiv.org/abs/2304.03442',
+        eli5: 'Stanford researchers ran 25 AI agents in a simulated small town for two days, each with a personality, a daily plan, and a memory of what happened to them. The agents spontaneously organized a Valentine’s Day party, started relationships, gossiped about each other, and remembered prior encounters days later. The paper showed that if you give language-model agents memory and the ability to reflect on their experiences, social behavior emerges at very small N.'
+      },
+      {
+        title: 'Multi-Agent Debate',
+        year: 2023,
+        gesture: 'Yilun Du et al., MIT / Google Brain — multiple language models argue with each other about an answer and converge on a better one. Factuality and reasoning both improve.',
+        body: 'The multi-agent debate paper (Du, Li, Torralba, Tenenbaum, Mordatch) demonstrated that multiple instances of a language model, asked to critique and respond to each other’s answers across several rounds, produced more factually accurate and more mathematically correct answers than any single instance. The mechanism: agents see each other’s reasoning, identify errors, propose alternatives, and converge. On MMLU, GSM8K, and biography-generation benchmarks, the debate approach substantially outperformed single-model prompting and self-consistency sampling. The pattern generalizes — critic/generator pairs, adversarial self-play, jury-of-agents — are all variants of this argument-to-consensus loop. It is the multi-agent form of the rigor-spine discipline: the agent cannot flatter itself across instances.',
+        citation: 'Du, Y., Li, S., Torralba, A., Tenenbaum, J. B., & Mordatch, I. (2023). arXiv:2305.14325.',
+        link: 'https://arxiv.org/abs/2305.14325',
+        eli5: 'MIT and Google Brain researchers showed that if you take multiple copies of the same language model and have them argue about an answer across several rounds — each critiquing the others — the final answer is substantially more accurate than any single copy would produce alone. The mechanism is simple: the agents see each other’s reasoning, identify errors, and converge toward correctness. This is the multi-agent version of the rigor discipline — a single agent can flatter itself, but multiple agents arguing can’t all agree on a lie that has a contradiction in it.'
+      }
+    ]
+  },
+
+  // ─────────────────────────────────────────────────────────────
   // 20 — Governance
   // ─────────────────────────────────────────────────────────────
   {

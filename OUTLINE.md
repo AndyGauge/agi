@@ -326,15 +326,26 @@ Sketched 2026-04-23. Revised to the braid.
 - **29.05** End-to-End Arguments in System Design — Saltzer, Reed, Clark, 1984. The architectural principle that kept the internet evolvable: keep the network simple; put the smarts at the edges.
 - **29.06** The Design Philosophy of the DARPA Internet Protocols — Clark, 1988. Seven design goals, ranked. Survivability was #2. The paper that answers "why does the internet actually work."
 
-## 30 — Applied
+## 30 — Orchestration
+
+*Multi-model orchestration is a distributed network applied to AI. Packet switching for requests, TCP/IP-style interop between providers, end-to-end intelligence at the orchestrator, survivability through fallbacks. The failure modes — drift, sycophancy — compound across hops unless the rigor-spine discipline is applied at every handoff.*
+
+- **30.01** Intelligent Agents: Theory and Practice — Wooldridge & Jennings, 1995. The founding multi-agent survey, twenty years before LLMs.
+- **30.02** ReAct: Synergizing Reasoning and Acting in Language Models — Yao et al., 2022. The reasoning-plus-action loop every modern agent framework runs.
+- **30.03** HuggingGPT — Shen et al., 2023. LLM as router across specialized models. The first end-to-end demonstration of a language model orchestrating a mesh.
+- **30.04** AutoGen — Wu et al., Microsoft, 2023. Conversable multi-agent framework. Agents communicate through defined roles.
+- **30.05** Generative Agents: Interactive Simulacra of Human Behavior — Park et al., Stanford, 2023. 25 agents in a simulated town. Emergent social behavior at small N.
+- **30.06** Improving Factuality and Reasoning in Language Models through Multiagent Debate — Du et al., 2023. Multiple agents argue; the right answer emerges from disagreement.
+
+## 31 — Applied
 
 *Monday morning. What to carry.*
 
-- **30.01** Reading a Model Card as a Specification.
-- **30.02** Wrapping an Agent in a Type-Checked Tool Interface.
-- **30.03** Writing a Noninterference Property for Your Domain.
-- **30.04** Building the Loop Your Organization Can Sustain — agile and space-mission, blended.
-- **30.05** When to Turn It Off.
+- **31.01** Reading a Model Card as a Specification.
+- **31.02** Wrapping an Agent in a Type-Checked Tool Interface.
+- **31.03** Writing a Noninterference Property for Your Domain.
+- **31.04** Building the Loop Your Organization Can Sustain — agile and space-mission, blended.
+- **31.05** When to Turn It Off.
 
 ---
 
